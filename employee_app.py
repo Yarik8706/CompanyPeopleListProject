@@ -71,7 +71,7 @@ class EmployeeApp:
         self.display_employees()
 
     def add_employee(self):
-        """ Добавление сотрудника """
+        """ Добавление сотрудника по ФИО"""
         full_name = self.entry_full_name.get()
         if full_name == "":
             return
@@ -83,7 +83,7 @@ class EmployeeApp:
         self.display_employees()
 
     def update_employee(self):
-
+        """ Обновление сотрудника по ФИО"""
         current_full_name = self.search_entry.get()
         new_full_name = self.entry_full_name.get()
         phone_number = self.entry_phone_number.get()
@@ -94,12 +94,14 @@ class EmployeeApp:
         self.display_employees()
 
     def delete_employee(self):
+        """ Удаление сотрудника по ФИО"""
         full_name = self.search_entry.get()
         self.db.delete_employee(full_name)
         self.clear_entries()
         self.display_employees()
 
     def search_employee(self):
+        """ Поиск сотрудника по ФИО"""
         search_query = self.search_entry.get()
         result = self.db.search_employee(search_query)
         self.tree.delete(*self.tree.get_children())
@@ -107,12 +109,14 @@ class EmployeeApp:
             self.tree.insert('', 'end', values=row)
 
     def display_employees(self):
+        """ Отображение записей из базы данных """
         result = self.db.display_employees()
         self.tree.delete(*self.tree.get_children())
         for row in result:
             self.tree.insert('', 'end', values=row)
 
     def clear_entries(self):
+        """ Очистка полей для ФИО, почты, телефона и зп """
         self.entry_full_name.delete(0, 'end')
         self.entry_phone_number.delete(0, 'end')
         self.entry_email.delete(0, 'end')

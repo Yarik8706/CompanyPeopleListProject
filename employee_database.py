@@ -54,7 +54,7 @@ class EmployeeDatabase:
         return result
 
     def display_employees(self):
-        # Получаем и отображаем все записи из базы данных
+        # Получаем и возвращаем все записи из базы данных
         self.cursor.execute('SELECT * FROM employees')
         result = self.cursor.fetchall()
         return result
